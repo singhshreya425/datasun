@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import React, { useState } from 'react';
+import Login from './Components/login';
+import CustomerList from './Components/customerList';
+import AddCustomer from './Components/addcustomer';
 function App() {
+  const [bearerToken, setBearerToken] = useState('');
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Customer Management App</h1>
+      {/* Render the Login component */}
+      <Login setBearerToken={setBearerToken} />
+
+      {/* Render the CustomerList component with the Bearer token */}
+      {bearerToken && <CustomerList bearerToken={bearerToken} />}
+
+      {/* Render the AddCustomer component with the Bearer token */}
+      {bearerToken && <AddCustomer bearerToken={bearerToken} />}
     </div>
   );
 }
